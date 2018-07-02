@@ -19,7 +19,8 @@ func PasswordHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	encodedPassword := pw.HashPassword512(plainTextPassword)
+	p := pw.CreateAndHash(plainTextPassword)
+	encodedPassword := p.UrlEncode()
 
 	w.Write([]byte(encodedPassword))
 }

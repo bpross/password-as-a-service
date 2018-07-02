@@ -5,10 +5,22 @@ import (
 	"encoding/base64"
 )
 
-func HashPassword512(password string) string {
+type Password struct {
+	hashedPassword []byte
+}
+
+func CreateAndHash(password string) *Password {
 	hasher := sha512.New()
 	ba := []byte(password)
 	hasher.Write(ba)
-	sha := base64.StdEncoding.EncodeToString(hasher.Sum(nil))
-	return sha
+	sha := hasher.Sum(nil)
+	p := &Password{
+		hashedPassword: sha,
+	}
+	return p
+}
+
+func (p *Password) UrlEncode() string {
+	urlEncoded := base64.StdEncoding.EncodeToString(p.hashedPassword)
+	return urlEncoded
 }
