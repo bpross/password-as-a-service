@@ -5,7 +5,7 @@ prod_env:
 	export PASSWORDWAIT=5
 
 test: test_env
-	go test ./handlers ./main ./password
+	go test -v -vet -all ./handlers ./main ./password ./stats
 
 build:
 	go build ./main/paas.go
