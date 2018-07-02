@@ -21,3 +21,6 @@ serve: prod_env
 	./paas
 
 build_and_serve: build serve
+
+part_one_proof:
+	go test ./password -run TestHashPassword_AngryMonkey
