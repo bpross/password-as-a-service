@@ -2,15 +2,18 @@
 Small HTTP server written in Go to serve hashed passwords
 
 # Endpoints
-- `/hash`: Returns URL encoded SHA512 hash of a string. 
-Ex: `curl -d "password=angryMonkey" http://localhost:8080/hash`
-Leaves socket open for 5 seconds before responding, as per the spec. This is configurable by setting the ENV variable `PASSWORDWAIT`
+- `/hash`: 
+	- Returns URL encoded SHA512 hash of a string. 
+	- Ex: `curl -d "password=angryMonkey" http://localhost:8080/hash`
+	- Leaves socket open for 5 seconds before responding, as per the spec. This is configurable by setting the ENV variable `PASSWORDWAIT`
 
-- `/shutdown`: Gracefully shutsdown the service
-Ex: `curl -X POST -d http://localhost:8080/shutdown`
+- `/shutdown`: 
+	- Gracefully shutsdown the service
+	- Ex: `curl -X POST -d http://localhost:8080/shutdown`
 
-- `/stats`: Retrieve stats about hash requests
-Ex: `curl http://localhost:8080/stats`
+- `/stats`: 
+	- Retrieve stats about hash requests
+	- Ex: `curl http://localhost:8080/stats`
 
 # Running, tests, etc
 - To build the server: `make build`
