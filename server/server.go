@@ -15,7 +15,6 @@ type Server struct {
 	stats  *stats.Stats
 }
 
-// Used this https://gist.github.com/peterhellberg/38117e546c217960747aacf689af3dc2#file-graceful-go-L17
 func New(options ...func(*Server)) *Server {
 	s := &Server{
 		logger: log.New(os.Stdout, "", 0),
