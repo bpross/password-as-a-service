@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"github.com/bpross/password-as-a-service/handlers"
 	"github.com/bpross/password-as-a-service/server"
 	"log"
 	"net/http"
@@ -38,16 +39,14 @@ func setup() (*http.Server, *log.Logger) {
 }
 
 func graceful(hs *http.Server, logger *log.Logger) {
-	stop := make(chan os.Signal, 1)
+	signal.Notify(handlers.ShutdownChannel, os.Interrupt, syscall.SIGTERM)
 
-	signal.Notify(stop, os.Interrupt, syscall.SIGTERM)
-
-	<-stop
+	<-handlers.ShutdownChannel
 
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	logger.Printf("\nShutdown!\n")
+	logger.Printf("\nShutting down once all requests go to idle!\n")
 
 	if err := hs.Shutdown(ctx); err != nil {
 		logger.Printf("Error: %v\n", err)
