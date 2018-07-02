@@ -43,5 +43,5 @@ Small HTTP server written in Go to serve hashed passwords
 No code is written in a vaccuum. Here are a list of resources that I used for this project (in no particular order):
 
 - [graceful shutdown example](https://gist.github.com/peterhellberg/38117e546c217960747aacf689af3dc2)
-- [stats middleware] (https://github.com/thoas/stats)
-- [http handler testing] (https://blog.questionable.services/article/testing-http-handlers-go/)
+- [stats middleware](https://github.com/thoas/stats)
+- [http handler testing](https://blog.questionable.services/article/testing-http-handlers-go/)
